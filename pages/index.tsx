@@ -5,6 +5,8 @@ import { UserContext } from '../context/userContext';
 import Loader from '@/components/common/Loader';
 import { signOut } from 'next-auth/react';
 import { toast } from 'sonner';
+import { DashboardIcon, EnterIcon, ExitIcon, GitHubLogoIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 
 const Index = () => {
     const { authenticated, userData, loading } = useContext(UserContext);
@@ -50,49 +52,40 @@ const Index = () => {
 
                     </main>
                     <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                        <a
+                        <Link
                             className="flex items-center gap-2 hover:underline hover:underline-offset-4"
                             href="https://github.com/the-bipu"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Image
-                                aria-hidden
-                                src="./globe.svg"
-                                alt="Globe icon"
-                                width={16}
-                                height={16}
-                            />
-                            Contact Us →
-                        </a>
+                            <GitHubLogoIcon className='w-5 h-5' />
+                            GitHub →
+                        </Link>
                         {!authenticated ? (
-                            <a
+                            <Link
                                 className="flex items-center gap-2 hover:underline hover:underline-offset-4"
                                 href="/auth/login"
                             >
-                                <Image
-                                    aria-hidden
-                                    src="./globe.svg"
-                                    alt="Globe icon"
-                                    width={16}
-                                    height={16}
-                                />
+                                <EnterIcon className='w-5 h-5' />
                                 Login →
-                            </a>
+                            </Link>
                         ) : (
-                            <button
-                                onClick={handleLogout}
-                                className="flex items-center gap-2 hover:underline hover:underline-offset-4 cursor-pointer bg-transparent border-none text-inherit"
-                            >
-                                <Image
-                                    aria-hidden
-                                    src="./globe.svg"
-                                    alt="Logout icon"
-                                    width={16}
-                                    height={16}
-                                />
-                                Logout →
-                            </button>
+                            <>
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center gap-2 hover:underline hover:underline-offset-4 cursor-pointer bg-transparent border-none text-inherit"
+                                >
+                                    <ExitIcon className='w-5 h-auto' />
+                                    Logout →
+                                </button>
+                                <Link
+                                    href='/dashboard'
+                                    className="flex items-center gap-2 hover:underline hover:underline-offset-4 cursor-pointer bg-transparent border-none text-inherit"
+                                >
+                                    <DashboardIcon className='w-5 h-auto' />
+                                    Dashboard →
+                                </Link>
+                            </>
                         )}
                     </footer>
                 </div>
