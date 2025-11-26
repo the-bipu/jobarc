@@ -157,7 +157,7 @@ const Login = () => {
                                                 </Button>
                                             </TooltipTrigger>
                                             <TooltipContent>
-                                                <p>Add to library</p>
+                                                <p>Not working as it's a little time taking process. if still want to use this, go to slietalumni.in</p>
                                             </TooltipContent>
                                         </Tooltip>
 
@@ -169,7 +169,7 @@ const Login = () => {
                                                 </Button>
                                             </TooltipTrigger>
                                             <TooltipContent>
-                                                <p>Add to library</p>
+                                                <p>Not working as it's a little time taking process. if still want to use this, go to slietalumni.in</p>
                                             </TooltipContent>
                                         </Tooltip>
                                     </div>

@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ message: 'email is required' }, { status: 400 });
         }
 
-        const jobs = await Job.find({ email }).sort({ createdAt: -1 });
+        const jobs = await Job.find({ userEmail: email }).sort({ createdAt: -1 });
 
         return NextResponse.json(jobs, { status: 200 });
 

@@ -6,6 +6,8 @@ import { signOut } from 'next-auth/react';
 import { toast } from 'sonner';
 import { DashboardIcon, EnterIcon, ExitIcon, GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
     const { authenticated, userData, loading } = useContext(UserContext);
@@ -35,58 +37,72 @@ const Index = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+                <div className="flex flex-col w-full min-h-screen h-screen overflow-hidden items-center">
 
-                    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+                    <main className="w-full flex flex-col gap-8 row-start-2 sm:items-start">
 
-                        {(authenticated && userData) ? (
-                            <ul className="list-inside list-decimal text-xl text-center sm:text-left">
-                                <li>This is the starters pack for nextjs projects. and the person is {userData?.name}</li>
-                            </ul>
-                        ) : (
-                            <ul className="list-inside list-decimal text-xl text-center sm:text-left">
-                                <li>This is the starters pack for nextjs projects.</li>
-                            </ul>
-                        )}
+                        <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 px-16 border-b border-border'>
+                            <Link href='/' className='cursor-pointer'>
+                                <Image src='/xbox.svg' alt='logo' width={200} height={80} className='md:w-28' />
+                            </Link>
+                            <div className='w-auto flex flex-row gap-2'>
+                                <Link
+                                    href="https://github.com/the-bipu/jobs-tracker"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Button variant='default' className='cursor-pointer'>
+                                        <GitHubLogoIcon className='w-5 h-5' />
+                                        GitHub
+                                    </Button>
+                                </Link>
+                                {!authenticated ? (
+                                    <Link href="/auth/login">
+                                        <Button variant='yellowish' className='cursor-pointer'>
+                                            <EnterIcon className='w-5 h-5' />
+                                            Login
+                                        </Button>
+                                    </Link>
+                                ) : (
+                                    <div className='flex flex-row gap-2 items-center'>
+                                        <Button
+                                            onClick={handleLogout}
+                                            variant={'greenry'} className='cursor-pointer'
+                                        >
+                                            <ExitIcon className='w-5 h-auto' />
+                                            Logout
+                                        </Button>
+                                        <Link href="/dashboard">
+                                            <Button variant='yellowish' className='cursor-pointer'>
+                                                <DashboardIcon className='w-5 h-5' />
+                                                Dashboard
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className='w-full px-16 pt-8 h-auto flex flex-col items-center justify-center'>
+                            <div className='w-8/12 flex flex-col items-center justify-center text-center'>
+                                <h1 className='text-5xl font-bold text-center mb-4'>Work Smarter on Your Job Hunt.</h1>
+                                <p className='w-2/3 text-lg text-center text-muted-foreground mb-4'>
+                                    Replace sticky notes and spreadsheets with an intelligent application management system.
+                                </p>
+                                {authenticated && userData ? (
+                                    <Link href="/dashboard">
+                                        <Button variant={'greenry'} className='text-xl font-light px-6 pb-6 pt-5 cursor-pointer'>Dashboard</Button>
+                                    </Link>
+                                ) : (
+                                    <Link href="/auth/login">
+                                        <Button variant={'greenry'} className='text-xl font-light px-6 pb-6 pt-5 cursor-pointer'>Get Started</Button>
+                                    </Link>
+                                )}
+                                <Image src={'/job-search.jpg'} alt="Job Search" width={600} height={400} className="mt-10 w-full border-6 border-white rounded-lg shadow-lg" />
+                            </div>
+                        </div>
 
                     </main>
-                    <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                        <Link
-                            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                            href="https://github.com/the-bipu"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <GitHubLogoIcon className='w-5 h-5' />
-                            GitHub →
-                        </Link>
-                        {!authenticated ? (
-                            <Link
-                                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                                href="/auth/login"
-                            >
-                                <EnterIcon className='w-5 h-5' />
-                                Login →
-                            </Link>
-                        ) : (
-                            <>
-                                <button
-                                    onClick={handleLogout}
-                                    className="flex items-center gap-2 hover:underline hover:underline-offset-4 cursor-pointer bg-transparent border-none text-inherit"
-                                >
-                                    <ExitIcon className='w-5 h-auto' />
-                                    Logout →
-                                </button>
-                                <Link
-                                    href='/dashboard'
-                                    className="flex items-center gap-2 hover:underline hover:underline-offset-4 cursor-pointer bg-transparent border-none text-inherit"
-                                >
-                                    <DashboardIcon className='w-5 h-auto' />
-                                    Dashboard →
-                                </Link>
-                            </>
-                        )}
-                    </footer>
                 </div>
             )}
         </React.Fragment>
