@@ -1,5 +1,6 @@
 'use client';
 
+import AdminDashboard from '@/components/common/AdminDashboard';
 import UserDashboard from '@/components/common/UserDashboard';
 import { UserContext } from '@/context/userContext'
 import Head from 'next/head';
@@ -20,9 +21,7 @@ const dashboard = () => {
             {authenticated ? (
                 <>
                     {userData?.type === 'admin' ? (
-                        <div>
-                            here admin
-                        </div>
+                        <AdminDashboard userData={userData} activeTab={activeTab} fetchUserData={fetchUserData} />
                     ) : (
                         <UserDashboard userData={userData} activeTab={activeTab} fetchUserData={fetchUserData} />
                     )}
