@@ -100,20 +100,20 @@ const Login = () => {
                 {loading && <Loader />}
 
                 {sessionStatus !== "authenticated" ? (
-                    <div className="w-full flex-1 min-h-0 bg-white md:px-6 px-0 py-6">
+                    <div className="w-full flex-1 min-h-0 bg-white md:px-6 px-0 md:py-6 py-0">
                         <div className='bg-[#EDEBE9] w-full h-full flex flex-col items-center justify-center md:rounded-2xl rounded-none px-8 py-8 relative overflow-hidden'>
 
                             <div className='absolute top-4 left-0 w-full h-auto flex flex-row items-center justify-between md:px-8 px-4 py-2'>
                                 <Link href='/' className='cursor-pointer'>
-                                    <Image src='/xbox.svg' alt='logo' width={200} height={80} className='md:w-28' />
+                                    <Image src='/xbox.svg' alt='logo' width={200} height={80} className='w-28' />
                                 </Link>
-                                <Image src='/samsung.svg' alt='logo' width={200} height={80} className='md:w-28 cursor-pointer' />
+                                <Image src='/samsung.svg' alt='logo' width={200} height={80} className='w-28 cursor-pointer' />
                             </div>
 
-                            <main className="w-full flex flex-col row-start-2 items-center justify-center">
+                            <main className="w-full flex flex-col row-start-2 items-center justify-center md:pt-0 pt-16">
 
                                 <div className='md:w-[600px] w-full h-full flex flex-col justify-between'>
-                                    <div className='w-full text-center mb-14 flex flex-col'>
+                                    <div className='w-full text-center md:mb-14 mb-10 flex flex-col'>
                                         <p className=' text-[#27272a] md:text-3xl text-2xl font-semibold'>Enter your credentials</p>
                                     </div>
 

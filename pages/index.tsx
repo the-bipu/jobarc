@@ -41,9 +41,9 @@ const Index = () => {
 
                     <main className="w-full flex flex-col gap-8 row-start-2 sm:items-start">
 
-                        <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 px-16 border-b border-border'>
+                        <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 md:px-16 px-4 border-b border-border'>
                             <Link href='/' className='cursor-pointer'>
-                                <Image src='/xbox.svg' alt='logo' width={200} height={80} className='md:w-28' />
+                                <Image src='/xbox.svg' alt='logo' width={200} height={80} className='w-28' />
                             </Link>
                             <div className='w-auto flex flex-row gap-2'>
                                 <Link
@@ -83,10 +83,10 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className='w-full px-16 pt-8 h-auto flex flex-col items-center justify-center'>
-                            <div className='w-8/12 flex flex-col items-center justify-center text-center'>
-                                <h1 className='text-5xl font-bold text-center mb-4'>Work Smarter on Your Job Hunt.</h1>
-                                <p className='w-2/3 text-lg text-center text-muted-foreground mb-4'>
+                        <div className='w-full md:px-16 px-4 md:pt-8 pt-4 h-auto flex flex-col items-center justify-center'>
+                            <div className='md:w-8/12 w-full flex flex-col items-center justify-center text-center'>
+                                <h1 className='md:text-5xl text-3xl font-bold text-center mb-4'>Work Smarter on Your Job Hunt.</h1>
+                                <p className='md:w-2/3 w-full text-lg text-center text-muted-foreground mb-4'>
                                     Replace sticky notes and spreadsheets with an intelligent application management system.
                                 </p>
                                 {authenticated && userData ? (
