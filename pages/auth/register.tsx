@@ -129,9 +129,9 @@ const Register = () => {
     return (
         <React.Fragment>
             <Head>
-                <link rel="icon" href="/favicon.ico" type="image/ico" sizes="70x70" />
-                <title>Register | Job Tracker</title>
-                <meta name="description" content="Register to your Job Tracker account or log in to join the network." />
+                <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
+                <title>Join HuntHive – Start Organizing Your Job Hunt</title>
+                <meta name="description" content="Create your HuntHive account and begin managing and tracking all your job applications in one smart, organized place." />
             </Head>
 
             <div className="w-full fixed md:h-screen h-auto flex flex-col items-center justify-start md:overflow-hidden overflow-auto">

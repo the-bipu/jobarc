@@ -13,9 +13,9 @@ const dashboard = () => {
     return (
         <React.Fragment>
             <Head>
-                <link rel="icon" href="/favicon.ico" type="image/ico" sizes="70x70" />
-                <title>Dashboard | Job Tracker</title>
-                <meta name="description" content="Dashboard | Job Tracker" />
+                <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
+                <title>HuntHive Dashboard – Track, Review, and Manage Applications</title>
+                <meta name="description" content="View, manage, and update all your job applications from your HuntHive dashboard — stay in control of your career search with organized insights." />
             </Head>
 
             {authenticated ? (

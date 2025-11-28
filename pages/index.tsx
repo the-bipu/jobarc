@@ -29,9 +29,9 @@ const Index = () => {
     return (
         <React.Fragment>
             <Head>
-                <link rel="icon" href="/favicon.ico" type="image/ico" sizes="70x70" />
-                <title>Job Tracker</title>
-                <meta name="description" content="Use this to track what companies you've applied." />
+                <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
+                <title>HuntHive – Organize Your Career Journey</title>
+                <meta name="description" content="Stay organized and boost your job hunt with HuntHive — the smart way to log applications and follow up." />
             </Head>
 
             {loading ? (

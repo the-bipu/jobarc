@@ -90,9 +90,9 @@ const Login = () => {
     return (
         <React.Fragment>
             <Head>
-                <link rel="icon" href="/favicon.ico" type="image/ico" sizes="70x70" />
-                <title>Login | Job Tracker</title>
-                <meta name="description" content="Log in to your Job Tracker account or register to join the network." />
+                <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
+                <title>Login to HuntHive – Continue Your Career Tracking</title>
+                <meta name="description" content="Access your HuntHive dashboard to keep tracking job applications, stay organized, and move closer to your next career opportunity." />
             </Head>
 
             <div className="w-full md:fixed relative md:h-screen h-auto flex flex-col items-center justify-start md:overflow-hidden overflow-auto">
