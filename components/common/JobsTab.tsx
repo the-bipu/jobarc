@@ -87,6 +87,9 @@ const JobsTab = ({ userData }: any) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+    const [statusFilter, setStatusFilter] = useState<string>('all');
+    const [jobTypeFilter, setJobTypeFilter] = useState<string>('all');
+    const [sourceFilter, setSourceFilter] = useState<string>('all');
 
     const form = useForm<JobFormValues>({
         resolver: zodResolver(jobSchema),
@@ -243,18 +246,30 @@ const JobsTab = ({ userData }: any) => {
     };
 
     useEffect(() => {
-        if (!searchQuery.trim()) {
-            setFilteredJobs(jobs);
-            return;
+        let filtered = [...jobs];
+
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            filtered = filtered.filter(job =>
+                job.company.toLowerCase().includes(query) ||
+                job.position.toLowerCase().includes(query)
+            );
         }
 
-        const query = searchQuery.toLowerCase();
-        const filtered = jobs.filter(job =>
-            job.company.toLowerCase().includes(query) ||
-            job.position.toLowerCase().includes(query)
-        );
+        if (statusFilter !== 'all') {
+            filtered = filtered.filter(job => job.status === statusFilter);
+        }
+
+        if (jobTypeFilter !== 'all') {
+            filtered = filtered.filter(job => job.jobType === jobTypeFilter);
+        }
+
+        if (sourceFilter !== 'all') {
+            filtered = filtered.filter(job => job.applicationSource === sourceFilter);
+        }
+
         setFilteredJobs(filtered);
-    }, [searchQuery, jobs]);
+    }, [searchQuery, statusFilter, jobTypeFilter, sourceFilter, jobs]);
 
     const JobForm = ({ form, onSubmit, isEdit = false }: { form: any; onSubmit: any; isEdit?: boolean }) => (
         <Form {...form}>
@@ -530,7 +545,7 @@ const JobsTab = ({ userData }: any) => {
                     </Dialog>
                 </div>
                 <div className="space-y-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 flex-wrap">
                         <div className="relative flex-1 max-w-md">
                             <Input
                                 type="text"
@@ -540,6 +555,56 @@ const JobsTab = ({ userData }: any) => {
                                 className="pl-4"
                             />
                         </div>
+
+                        <Select value={statusFilter} onValueChange={setStatusFilter}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Filter by Status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Statuses</SelectItem>
+                                <SelectItem value="Applied">Applied</SelectItem>
+                                <SelectItem value="HR Screening">HR Screening</SelectItem>
+                                <SelectItem value="Interview Scheduled">Interview Scheduled</SelectItem>
+                                <SelectItem value="Technical Round">Technical Round</SelectItem>
+                                <SelectItem value="Managerial Round">Managerial Round</SelectItem>
+                                <SelectItem value="Offered">Offered</SelectItem>
+                                <SelectItem value="Rejected">Rejected</SelectItem>
+                                <SelectItem value="Ghosted">Ghosted</SelectItem>
+                                <SelectItem value="Accepted">Accepted</SelectItem>
+                                <SelectItem value="Joined">Joined</SelectItem>
+                                <SelectItem value="Withdrawn">Withdrawn</SelectItem>
+                            </SelectContent>
+                        </Select>
+
+                        <Select value={jobTypeFilter} onValueChange={setJobTypeFilter}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Filter by Type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Types</SelectItem>
+                                <SelectItem value="Full-time">Full-time</SelectItem>
+                                <SelectItem value="Internship">Internship</SelectItem>
+                                <SelectItem value="Part-time">Part-time</SelectItem>
+                                <SelectItem value="Contract">Contract</SelectItem>
+                                <SelectItem value="Remote">Remote</SelectItem>
+                            </SelectContent>
+                        </Select>
+
+                        <Select value={sourceFilter} onValueChange={setSourceFilter}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Filter by Source" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Sources</SelectItem>
+                                <SelectItem value="Campus">Campus</SelectItem>
+                                <SelectItem value="Referral">Referral</SelectItem>
+                                <SelectItem value="LinkedIn">LinkedIn</SelectItem>
+                                <SelectItem value="Indeed">Indeed</SelectItem>
+                                <SelectItem value="Company Website">Company Website</SelectItem>
+                                <SelectItem value="HR Email">HR Email</SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     <div className="container mx-auto space-y-6">
