@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import Head from 'next/head';
 import { UserContext } from '../context/userContext';
-import Loader from '@/components/common/Loader';
+import Loader from '@/components/main/loader/Loader';
 import { signOut } from 'next-auth/react';
 import { toast } from 'sonner';
-import { DashboardIcon, EnterIcon, ExitIcon, GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 const Index = () => {
     const { authenticated, userData, loading } = useContext(UserContext);
@@ -37,69 +37,66 @@ const Index = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className="flex flex-col w-full min-h-screen h-screen overflow-hidden items-center">
+                <div className="flex flex-col w-full min-h-screen h-screen overflow-hidden items-center bg-white">
 
-                    <main className="w-full flex flex-col gap-8 row-start-2 sm:items-start">
+                    <main className="w-full flex flex-col row-start-2 sm:items-start">
 
-                        <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 md:px-16 px-4 border-b border-border'>
+                        <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 mb-8 md:px-16 px-4'>
                             <Link href='/' className='cursor-pointer'>
-                                <Image src='/xbox.svg' alt='logo' width={200} height={80} className='w-28' />
+                                <Image src='/hunthive.svg' alt='logo' width={200} height={80} className='w-40' />
                             </Link>
-                            <div className='w-auto flex flex-row gap-2'>
-                                <Link
-                                    href="https://github.com/the-bipu/jobs-tracker"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Button variant='default' className='cursor-pointer'>
-                                        <GitHubLogoIcon className='w-5 h-5' />
-                                        GitHub
-                                    </Button>
-                                </Link>
-                                {!authenticated ? (
-                                    <Link href="/auth/login">
-                                        <Button variant='yellowish' className='cursor-pointer'>
-                                            <EnterIcon className='w-5 h-5' />
-                                            Login
-                                        </Button>
-                                    </Link>
-                                ) : (
-                                    <div className='flex flex-row gap-2 items-center'>
-                                        <Button
-                                            onClick={handleLogout}
-                                            variant={'greenry'} className='cursor-pointer'
-                                        >
-                                            <ExitIcon className='w-5 h-auto' />
-                                            <p className='md:flex hidden'>Logout</p>
-                                        </Button>
-                                        <Link href="/dashboard">
-                                            <Button variant='yellowish' className='cursor-pointer'>
-                                                <DashboardIcon className='w-5 h-5' />
-                                                <p className='md:flex hidden'>Dashboard</p>
-                                            </Button>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Image src='/menu.svg' alt='logo' width={200} height={80} className='w-6 cursor-pointer' />
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>Shortcut</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>
+                                        <Link href="https://github.com/the-bipu/jobs-tracker" target="_blank" rel="noopener noreferrer">
+                                            GitHub
                                         </Link>
-                                    </div>
-                                )}
+                                    </DropdownMenuItem>
+                                    {!authenticated ? (
+                                        <DropdownMenuItem>
+                                            <Link href="/auth/login">Login</Link>
+                                        </DropdownMenuItem>
+                                    ) : (
+                                        <div className='flex flex-row gap-2 items-center'>
+                                            <DropdownMenuItem>
+                                                <Link href="/dashboard">Dashboard</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                                        </div>
+                                    )}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+
+                        <div className='w-full md:px-16 px-4 h-auto flex flex-col items-center justify-center mb-12'>
+                            <div className='md:w-9/12 w-full flex flex-col items-center justify-center text-center'>
+                                <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-medium cursor-pointer md:mb-8 mb-6'>Introducing HuntHive</Button>
+                                <h1 className='md:max-w-4xl w-full md:text-6xl text-3xl font-bold text-center md:mb-10 mb-6 roboto-mono'>Your Ultimate Job Tracking Platform</h1>
+                                <p className='md:max-w-3xl w-11/12 md:text-xl text-base text-center text-[#777] font-normal mb-8 roboto-mono'>
+                                    HuntHive is your personal job search companion, built to streamline applications, track progress, and turn chaos into clarity on your path to employment.                                </p>
+                                <div className='w-auto flex md:flex-row flex-col md:gap-3 gap-4'>
+                                    {authenticated && userData ? (
+                                        <Link href="/dashboard">
+                                            <Button variant={'outlineBlack'} className='md:text-lg text-base px-8 py-5 font-normal cursor-pointer'>Surf your dashboard</Button>
+                                        </Link>
+                                    ) : (
+                                        <Link href="/auth/login">
+                                            <Button variant={'outlineBlack'} className='md:text-lg text-base px-8 py-5 font-normal cursor-pointer'>Start now - It's free</Button>
+                                        </Link>
+                                    )}
+                                    <Link href="/contact">
+                                        <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-normal cursor-pointer'>Schedule a demo</Button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
 
-                        <div className='w-full md:px-16 px-4 md:pt-8 pt-4 h-auto flex flex-col items-center justify-center'>
-                            <div className='md:w-8/12 w-full flex flex-col items-center justify-center text-center'>
-                                <h1 className='md:text-5xl text-3xl font-bold text-center mb-4'>Work Smarter on Your Job Hunt.</h1>
-                                <p className='md:w-2/3 w-full text-lg text-center text-muted-foreground mb-4'>
-                                    Replace sticky notes and spreadsheets with an intelligent application management system.
-                                </p>
-                                {authenticated && userData ? (
-                                    <Link href="/dashboard">
-                                        <Button variant={'greenry'} className='text-xl font-light px-6 pb-6 pt-5 cursor-pointer'>Dashboard</Button>
-                                    </Link>
-                                ) : (
-                                    <Link href="/auth/login">
-                                        <Button variant={'greenry'} className='text-xl font-light px-6 pb-6 pt-5 cursor-pointer'>Get Started</Button>
-                                    </Link>
-                                )}
-                                <Image src={'/job-search.jpg'} alt="Job Search" width={600} height={400} className="mt-10 w-full border-6 border-white rounded-lg shadow-lg" />
-                            </div>
+                        <div className='w-full bg-[#FFC348] h-80'>
                         </div>
 
                     </main>
