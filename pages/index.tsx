@@ -62,7 +62,7 @@ const Index = () => {
                                             <Link href="/auth/login">Login</Link>
                                         </DropdownMenuItem>
                                     ) : (
-                                        <div className='flex flex-row gap-2 items-center'>
+                                        <div className='flex flex-col'>
                                             <DropdownMenuItem>
                                                 <Link href="/dashboard">Dashboard</Link>
                                             </DropdownMenuItem>

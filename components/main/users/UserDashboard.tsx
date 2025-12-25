@@ -1,8 +1,8 @@
 import React from 'react';
-import Sidebar from '../main/others/Sidebar';
-import Topbar from '../main/others/Topbar';
-import ProfileTab from '../main/common/ProfileTab';
-import JobsTab from '../main/common/JobsTab';
+import Sidebar from '../others/Sidebar';
+import Topbar from '../others/Topbar';
+import ProfileTab from '../common/ProfileTab';
+import JobsTab from '../common/JobsTab';
 
 const UserDashboard = ({ userData, activeTab, fetchUserData }: any) => {
     return (

@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div className={`fixed md:relative bg-[#1a1a1a] h-full min-w-72 max-w-80 flex flex-col items-center justify-start py-4 px-8 ${sideBar ? 'left-0' : 'md:left-0 -left-76'} transition-all duration-300 z-50`}>
             <div className='w-auto flex flex-row gap-4 items-center justify-start'>
                 <Link href='/' className='cursor-pointer'>
-                    <Image src='/xbox.svg' alt='logo' width={200} height={80} className='w-28' />
+                    <Image src='/hunthive-light.svg' alt='logo' width={200} height={80} className='w-40' />
                 </Link>
             </div>
 
