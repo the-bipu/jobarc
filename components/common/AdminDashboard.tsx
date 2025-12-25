@@ -3,7 +3,8 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import ProfileTab from './ProfileTab';
 import JobsTab from './JobsTab';
-import ExtraTab from './ExtraTab';
+import UsersTab from './UsersTab';
+import AdminTab from './AdminTab';
 
 const AdminDashboard = ({ userData, activeTab, fetchUserData }: any) => {
     return (
@@ -20,8 +21,12 @@ const AdminDashboard = ({ userData, activeTab, fetchUserData }: any) => {
                     <JobsTab userData={userData} />
                 )}
 
-                {activeTab === 'extra' && (
-                    <ExtraTab />
+                {activeTab === 'users' && (
+                    <UsersTab />
+                )}
+
+                {activeTab === 'admin' && (
+                    <AdminTab />
                 )}
             </div>
         </div>

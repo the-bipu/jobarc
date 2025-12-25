@@ -41,20 +41,20 @@ const Sidebar = () => {
 
                     <div onClick={() => { setActiveTab("jobs"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'jobs' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                         <BackpackIcon className='w-6 h-auto' />
-                        <span>Jobs</span>
+                        <span>Track Jobs</span>
                     </div>
 
                     {userData?.type === 'admin' && (
-                        <div onClick={() => { setActiveTab("extra"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'extra' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
+                        <div onClick={() => { setActiveTab("users"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'users' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                             <GlobeIcon className='w-6 h-auto' />
-                            <span>Note</span>
+                            <span>Track Users</span>
                         </div>
                     )}
 
                     {userData?.type === 'admin' && (
-                        <div onClick={() => { setActiveTab("approve"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'approve' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
+                        <div onClick={() => { setActiveTab("admin"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'admin' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                             <DiscordLogoIcon className='w-6 h-auto' />
-                            <span>Approval</span>
+                            <span>Track Admin</span>
                         </div>
                     )}
                 </div>
